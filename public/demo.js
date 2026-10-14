@@ -62,14 +62,14 @@ document.querySelectorAll("[data-demo-role]").forEach((button) => {
 });
 renderDemoChat();
 
-document.querySelector("#demo-opinion-send").addEventListener("click", () => {
-  const result = document.querySelector("#demo-opinion-result");
+document.querySelector("#demo-help-preview").addEventListener("click", () => {
+  const result = document.querySelector("#demo-help-result");
   result.hidden = false;
   result.replaceChildren();
   const strong = document.createElement("strong");
-  strong.textContent = "体験用のお手紙を受け付けました";
+  strong.textContent = "送信前の確認画面（体験用）";
   const body = document.createElement("p");
-  body.textContent = "会社からの返信例：ご意見ありがとう。来週から朝礼メモを共有ボードに残す方法を試します。匿名のまま、この画面で返信を確認できます。";
+  body.textContent = `${document.querySelector("#demo-help-destination").value}を選びました。実際の画面では、送る内容と相手をもう一度確認し、本人が送信を決めます。`;
   result.append(strong, body);
 });
 

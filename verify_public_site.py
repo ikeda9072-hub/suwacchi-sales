@@ -20,7 +20,6 @@ def require(condition: bool, message: str) -> None:
 
 require("体験用デモ" in HTML_TEXT, "fixed demo label is missing")
 for page_name, page in (("owner", HTML_TEXT), ("staff", STAFF_HTML_TEXT)):
-    require("あなたを覚えて、" in page and "あなたを支える。" in page, f"brand catchcopy is missing: {page_name}")
     require("あなた専用AI相談アプリ" in page, f"service name is missing: {page_name}")
     require("いい会社は、" in page and "みんなでつくる。" in page, f"company philosophy is missing: {page_name}")
     for character in ("すわっち", "しおり", "みけ", "レイ"):
@@ -29,6 +28,16 @@ for page_name, page in (("owner", HTML_TEXT), ("staff", STAFF_HTML_TEXT)):
     require("何でも無制限に記憶するものではありません" in page, f"memory boundary is missing: {page_name}")
 require("応募受付 準備中" in HTML_TEXT, "application form must stay disabled")
 require("application-form\" novalidate" not in HTML, "live application form must not be public")
+require("ひとりで抱えない社長へ。" in HTML_TEXT, "owner-first hero is missing")
+require("5〜20名ほどの会社向け" in HTML_TEXT, "target company size is missing")
+require("無料体験を事前登録する" in HTML_TEXT, "pre-registration CTA is missing")
+require("使うかどうかは自由です" in STAFF_HTML_TEXT, "optional-use guidance is missing")
+for page_name, page in (("owner", HTML_TEXT), ("staff", STAFF_HTML_TEXT)):
+    require("見えるもの・見えないもの" in page, f"visibility boundary is missing: {page_name}")
+    require("自動通知や即時対応は行いません" in page, f"no automatic emergency response warning is missing: {page_name}")
+    require("ヘルプの利用回数・カテゴリ・緊急度・本文" in page, f"help report exclusion is missing: {page_name}")
+require("ご意見ポスト" not in HTML_TEXT + STAFF_HTML_TEXT, "retired opinion-post copy remains")
+require("demo-opinion" not in HTML + JS and "staff-opinion" not in STAFF_HTML + STAFF_JS, "retired opinion demo remains")
 require("経営者の方はこちら" not in STAFF_HTML_TEXT, "owner link must not appear in the staff header")
 require("企業・店舗への導入をお考えの方へ" in STAFF_HTML_TEXT, "discreet owner link is missing from the staff footer")
 require("毎日に、もっと" in STAFF_HTML_TEXT and "便利と安心を。" in STAFF_HTML_TEXT, "daily-use heading is missing")

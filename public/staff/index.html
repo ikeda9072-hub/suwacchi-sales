@@ -36,6 +36,7 @@
           <h1>あなたを覚えて、<br />あなたを支える。</h1>
           <p class="staff-hero-lead">毎日の「忘れたくない」も、<br />誰かに聞いてほしいことも。</p>
           <p class="staff-hero-note">ちょっとしたメモから、気軽なおしゃべりや相談まで。あなたが選んだAIパートナーが、毎日に寄り添います。</p>
+          <p class="careful-note"><strong>使うかどうかは自由です。</strong> 相談・ヘルプ・個人メモ・ミッション提案・ポイント送信は、必要なときだけ利用できます。</p>
           <div class="hero-actions">
             <a class="primary-cta" href="#staff-demo">触ってみる</a>
             <a class="secondary-cta" href="#staff-faq">安心ガイドを見る</a>
@@ -103,6 +104,15 @@
         </div>
       </section>
 
+      <section class="section-shell" aria-labelledby="staff-visibility-title">
+        <div class="section-heading centered"><p class="eyebrow">あなたの会社の社長に</p><h2 id="staff-visibility-title">見えるもの・見えないもの</h2></div>
+        <div class="staff-more-grid">
+          <article><span>✓</span><h3>見える</h3><p>あなたが明示的に社長へ送ったヘルプと、仕事用の「みんなのやること」は見えます。</p></article>
+          <article><span>🔒</span><h3>見えない</h3><p>通常のAI相談本文、AIだけに相談した内容、「わたしのやること」の本文はそのまま見えません。</p></article>
+          <article><span>📊</span><h3>レポートに含まれない</h3><p>ヘルプの利用回数・カテゴリ・緊急度・本文は、職場傾向や週次レポートに入りません。</p></article>
+        </div>
+      </section>
+
       <section id="staff-demo" class="section-shell demo-section staff-demo-section" aria-labelledby="staff-demo-title">
         <div class="section-heading centered">
           <p class="eyebrow">登録不要・保存なし</p>
@@ -114,7 +124,7 @@
           <div class="demo-tabs staff-demo-tabs" role="tablist" aria-label="体験できる機能">
             <button role="tab" aria-selected="true" data-staff-demo-tab="chat">AI相談</button>
             <button role="tab" aria-selected="false" data-staff-demo-tab="tasks">やること</button>
-            <button role="tab" aria-selected="false" data-staff-demo-tab="opinion">ご意見</button>
+            <button role="tab" aria-selected="false" data-staff-demo-tab="help">ヘルプ</button>
             <button role="tab" aria-selected="false" data-staff-demo-tab="mission">ミッション・ポイント</button>
           </div>
 
@@ -133,15 +143,14 @@
             <div class="staff-task-chat-example"><span>チャットから登録</span><p>「帰りに豆腐を買うのを覚えておいて」</p><button id="staff-task-draft" class="demo-button" type="button">登録案を見る</button><div id="staff-task-draft-card" class="task-draft-card" hidden></div></div>
           </div>
 
-          <div class="demo-panel" data-staff-demo-panel="opinion" hidden>
-            <div class="sample-banner">体験用・ご意見は送信されません</div>
-            <h3>会社へ伝えたいときだけ使えます</h3>
-            <p>匿名または記名を自分で選び、会社からの返事をこの画面で受け取るイメージです。</p>
-            <div class="demo-form-row"><label><input type="radio" name="staff-demo-name" checked /> 匿名で送る</label><label><input type="radio" name="staff-demo-name" /> 名前を伝える</label></div>
-            <textarea rows="4" aria-label="体験用のご意見">朝礼の連絡事項を、あとから確認できるようにしてほしいです。</textarea>
-            <button id="staff-opinion-send" class="demo-button" type="button">送信を体験</button>
-            <div id="staff-opinion-result" class="demo-result" hidden></div>
-            <p class="careful-note">匿名を選ぶと名前は表示されません。ただし、文章や具体的な状況から本人が推測される可能性があります。</p>
+          <div class="demo-panel" data-staff-demo-panel="help" hidden>
+            <div class="sample-banner">体験用・相談は送信も保存もされません</div>
+            <h3>必要なときだけ、相談先を選べます</h3>
+            <label>相談先<select id="staff-help-destination"><option>まずはAIに相談する</option><option>責任者に伝える</option><option>社長に直接伝える</option><option>社内の人には相談しにくい</option></select></label>
+            <label>緊急度<select><option>まずは相談したい</option><option>できるだけ早く対応してほしい</option><option>今すぐ助けが必要</option></select></label>
+            <button id="staff-help-preview" class="demo-button" type="button">送信前の確認を体験</button>
+            <div id="staff-help-result" class="demo-result" hidden></div>
+            <p class="careful-note">緊急度を選んでも自動通知や即時対応は行いません。差し迫った危険には110・119などを利用してください。</p>
           </div>
 
           <div class="demo-panel" data-staff-demo-panel="mission" hidden>
@@ -157,7 +166,7 @@
 
       <section class="staff-more-section">
         <div class="section-shell staff-more-grid">
-          <article><span>💌</span><h3>ご意見ポスト</h3><p>会社へ伝えたいことがある場合だけ、自分の意思で利用できます。匿名のまま追加返信もできます。</p></article>
+          <article><span>🛟</span><h3>ヘルプ</h3><p>本人が必要なときだけ、相談先を選び、送信前に内容を確認してから助けを求められます。</p></article>
           <article><span>⭐</span><h3>みんなのミッション</h3><p>会社を少しずつ良くするための前向きな取り組みです。強制的な達成報告や仕事のノルマではありません。</p></article>
           <article><span>♡</span><h3>ありがとうポイント</h3><p>仲間の良い行動へ感謝を贈れます。ランキングではなく、送り主も受取人の画面には表示されません。</p></article>
         </div>
@@ -169,11 +178,11 @@
           <details><summary>アプリをインストールする必要はある？</summary><p>ありません。ブラウザから利用できます。スマートフォンのホーム画面への追加は任意です。</p></details>
           <details><summary>社長に相談内容を見られる？</summary><p>通常相談の本文が社長や同僚へそのまま表示されることはありません。会社向けの傾向表示には、個人を推測しにくくする公開条件があります。</p></details>
           <details><summary>個人メモはほかの人に見える？</summary><p>「わたしのやること」は本人専用です。社長、ほかのスタッフ、運営者にも本文は表示されません。</p></details>
-          <details><summary>匿名ポストは本当に匿名？</summary><p>匿名を選ぶと名前は会社へ表示されません。ただし、文章や出来事の内容から本人が推測される可能性はあります。書く内容を確認してから送信してください。</p></details>
+          <details><summary>ヘルプは匿名で送れる？</summary><p>会社の設定で許可された相談項目では、匿名の一次相談を選べます。ただし、文章や出来事の内容から本人が推測される可能性があります。送信前に内容と相手を確認してください。</p></details>
           <details><summary>仕事が終わってからも使える？</summary><p>ブラウザから開ける時間であれば利用できます。勤務時間外の利用を強制する機能や、外部通知を強制する機能はありません。職場のルールと無理のない範囲で利用してください。</p></details>
           <details><summary>ミッションに必ず参加しなければならない？</summary><p>アプリ上は、強制参加や強制的な達成報告を求める仕組みではありません。会社独自の運用がある場合は、その案内も確認してください。</p></details>
           <details><summary>ポイントが少ないと評価に影響する？</summary><p>アプリがポイント数だけで人事評価を自動決定することはありません。会社での扱いが気になる場合は、導入時の運用ルールを確認してください。</p></details>
-          <details><summary>使わなかったらどうなる？</summary><p>相談、個人メモ、ご意見、ミッション提案、ポイント送信は必要なときに使う機能です。使わなかったことだけを理由にアプリが評価を下げることはありません。</p></details>
+          <details><summary>使わなかったらどうなる？</summary><p>相談、個人メモ、ヘルプ、ミッション提案、ポイント送信は必要なときに使う機能です。使わなかったことだけを理由にアプリが評価を下げることはありません。</p></details>
         </div>
       </section>
 
