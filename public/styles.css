@@ -20,7 +20,7 @@ img { display: block; max-width: 100%; }
 [hidden] { display: none !important; }
 
 .site-header { position: sticky; z-index: 20; top: 0; display: flex; align-items: center; gap: 28px; min-height: 72px; padding: 10px max(20px, calc((100vw - 1160px) / 2)); background: rgba(255, 250, 244, .88); border-bottom: 1px solid rgba(92, 61, 74, .08); backdrop-filter: blur(16px); }
-.brand { display: inline-flex; align-items: center; gap: 9px; margin-right: auto; text-decoration: none; font-weight: 800; letter-spacing: .04em; }
+.brand { display: inline-flex; align-items: center; flex-shrink: 0; gap: 9px; margin-right: auto; text-decoration: none; font-weight: 800; letter-spacing: .04em; white-space: nowrap; }
 .brand img { width: 42px; height: 42px; border-radius: 50%; }
 .site-header nav { display: flex; gap: 26px; font-size: .86rem; font-weight: 700; }
 .site-header nav a, .header-login, .header-staff-link { text-decoration: none; }
@@ -323,7 +323,7 @@ footer > p { grid-column: 1 / -1; margin: 10px 0 0; color: rgba(255,255,255,.5);
 
 @media (max-width: 620px) {
   .section-shell { width: min(100% - 28px, 1160px); }
-  .site-header { min-height: 62px; padding-inline: 14px; }
+  .site-header { gap: 8px; min-height: 62px; padding-inline: 14px; }
   .brand img { width: 36px; height: 36px; }
   .header-login { padding: 7px 12px; font-size: .74rem; }
   .header-staff-link { max-width: 52vw; overflow: hidden; padding: 7px 11px; font-size: .7rem; text-overflow: ellipsis; }
