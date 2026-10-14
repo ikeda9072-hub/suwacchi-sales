@@ -30,6 +30,20 @@ require("経営者の方はこちら" not in STAFF_HTML, "owner link must not ap
 require("企業・店舗への導入をお考えの方へ" in STAFF_HTML, "discreet owner link is missing from the staff footer")
 require("毎日に、もっと" in STAFF_HTML and "便利と安心を。" in STAFF_HTML, "daily-use heading is missing")
 require("気になること、" in STAFF_HTML and "何でも話してね。" in STAFF_HTML, "consultation heading is missing")
+require("社長にも、ほっと話せる場所を。" in HTML, "owner care heading is missing")
+for phrase in (
+    "誰かに、ちょっと話を聞いてほしい",
+    "ひとりで抱えている気持ちを言葉にしたい",
+    "大切な話をする前に、伝え方を考えたい",
+    "社長もスタッフも、無理なく働ける会社にしたい",
+    "お互いの頑張りを認め合える職場にしたい",
+):
+    require(phrase in HTML, f"owner care copy is missing: {phrase}")
+for page_name, page in (("owner", HTML), ("staff", STAFF_HTML)):
+    require("文字でも、声でも。あなたに合った話し方で。" in page, f"voice option heading is missing: {page_name}")
+    require("社長もスタッフも利用できる音声会話オプションを提供予定です。" in page, f"planned voice option copy is missing: {page_name}")
+for discouraged_copy in ("スタッフに何度も同じことを言っている", "仕事を教えてもなかなか伝わらない", "スタッフが何を考えているか分からない", "会社の理念をスタッフに理解してほしい"):
+    require(discouraged_copy not in HTML + JS, f"discouraged owner copy remains: {discouraged_copy}")
 require("スタッフとして体験する" not in STAFF_HTML and "スタッフとして、触ってみる" not in STAFF_HTML, "staff-specific demo wording remains")
 require("fetch(" not in JS + STAFF_JS, "public demos must not make network requests")
 require("/api/" not in JS + STAFF_JS and "supabase" not in (JS + STAFF_JS).lower(), "private API reference detected")
