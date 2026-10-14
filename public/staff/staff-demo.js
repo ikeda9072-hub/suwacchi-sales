@@ -41,7 +41,7 @@ const sharedTasks = [
 ];
 const personalTasks = [
   { title: "業者へ電話する", meta: "来週月曜日・自分だけに表示", fresh: false },
-  { title: "帰りに日用品を買う", meta: "期限なし・自分だけに表示", fresh: false },
+  { title: "帰りに豆腐を買う", meta: "今日・日常／プライベート・自分だけに表示", fresh: false },
 ];
 let taskScope = "shared";
 
@@ -93,9 +93,9 @@ document.querySelector("#staff-task-draft").addEventListener("click", (event) =>
   card.hidden = false;
   card.replaceChildren();
   const scope = document.createElement("strong");
-  scope.textContent = "共有範囲：みんなのやること";
+  scope.textContent = "保存先：わたしのやること（本人専用）";
   const detail = document.createElement("p");
-  detail.textContent = "タスク：備品を確認する／期限：明日";
+  detail.textContent = "タスク：帰りに豆腐を買う／期限：今日／分類：日常・プライベート";
   const confirm = document.createElement("button");
   confirm.type = "button";
   confirm.className = "demo-button";
