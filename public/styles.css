@@ -13,7 +13,7 @@
 
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
-body { margin: 0; color: var(--ink); background: var(--cream); font-family: "Hiragino Sans", "Yu Gothic", system-ui, sans-serif; line-height: 1.75; }
+body { margin: 0; overflow-x: hidden; color: var(--ink); background: var(--cream); font-family: "Hiragino Sans", "Yu Gothic", system-ui, sans-serif; line-height: 1.75; }
 button, input, textarea, select { font: inherit; }
 a { color: inherit; }
 img { display: block; max-width: 100%; }
@@ -292,6 +292,8 @@ footer { display: grid; grid-template-columns: 1fr auto; gap: 20px; padding: 45p
 .footer-brand img { width: 50px; height: 50px; border-radius: 50%; }
 .footer-brand small { display: block; }
 .footer-links { display: flex; align-items: center; gap: 20px; font-size: .78rem; font-weight: 800; }
+.footer-owner-link { color: rgba(255,255,255,.7); font-weight: 600; text-underline-offset: .22em; }
+.footer-owner-link:hover { color: #fff; }
 footer > p { grid-column: 1 / -1; margin: 10px 0 0; color: rgba(255,255,255,.5); font-size: .7rem; }
 
 @media (max-width: 900px) {
@@ -324,7 +326,7 @@ footer > p { grid-column: 1 / -1; margin: 10px 0 0; color: rgba(255,255,255,.5);
   .brand-statement h2 { line-height: 1.35; }
   #worries-title { line-height: 1.32; }
   .hero-lead { margin-top: 20px; }
-  .hero-visual { min-height: 355px; }
+  .hero-visual { min-height: 355px; overflow: clip; }
   .mascot-halo { width: 285px; }
   .orbit-one { width: 330px; height: 330px; }
   .orbit-two { width: 245px; height: 245px; }
@@ -366,6 +368,9 @@ footer > p { grid-column: 1 / -1; margin: 10px 0 0; color: rgba(255,255,255,.5);
   .staff-float-task { top: 25px; right: -2px; }
   .staff-float-private { bottom: 28px; left: -2px; }
   .staff-feature-section, .staff-consult-section, .staff-demo-section, .staff-more-section, .staff-faq-section { padding-block: 72px; }
+  .staff-feature-section .section-heading { margin-bottom: 32px; }
+  .staff-feature-section .section-heading h2, .staff-consult-layout h2 { font-size: clamp(1.72rem, 7.8vw, 2rem); line-height: 1.32; letter-spacing: -.025em; }
+  .staff-consult-layout .eyebrow { margin-bottom: 9px; }
   .staff-feature-card { grid-template-columns: 1fr; gap: 15px; padding: 23px 19px; }
   .staff-feature-icon { width: 52px; height: 52px; border-radius: 17px; font-size: 1.35rem; }
   .staff-demo-tabs { display: flex; overflow-x: auto; justify-content: flex-start; }
