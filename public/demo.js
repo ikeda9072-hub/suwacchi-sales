@@ -62,6 +62,40 @@ document.querySelectorAll("[data-demo-role]").forEach((button) => {
 });
 renderDemoChat();
 
+let helpDemoRole = "president";
+const helpDestination = document.querySelector("#demo-help-destination");
+const helpFinder = document.querySelector("[data-demo-panel=\"help\"] [data-support-finder]");
+
+function configureHelpDemo() {
+  helpDestination.replaceChildren(new Option("相談先を選んでください", ""));
+  if (helpDemoRole === "president") {
+    helpDestination.add(new Option("社外の相談窓口を探す", "external"));
+  } else {
+    helpDestination.add(new Option("責任者に伝える", "responsible"));
+    helpDestination.add(new Option("社長に直接伝える", "president"));
+    helpDestination.add(new Option("社外の相談窓口を探す", "external"));
+  }
+  document.querySelector("#demo-help-internal").hidden = true;
+  document.querySelector("#demo-help-external").hidden = true;
+  document.querySelector("#demo-help-result").hidden = true;
+  window.SuwacchiSupport?.setRole(helpFinder, helpDemoRole);
+}
+
+document.querySelectorAll("[data-help-demo-role]").forEach((button) => {
+  button.addEventListener("click", () => {
+    helpDemoRole = button.dataset.helpDemoRole;
+    document.querySelectorAll("[data-help-demo-role]").forEach((item) => item.classList.toggle("active", item === button));
+    configureHelpDemo();
+  });
+});
+
+helpDestination.addEventListener("change", () => {
+  const internal = helpDestination.value === "responsible" || helpDestination.value === "president";
+  document.querySelector("#demo-help-internal").hidden = !internal;
+  document.querySelector("#demo-help-external").hidden = helpDestination.value !== "external";
+  document.querySelector("#demo-help-result").hidden = true;
+});
+
 document.querySelector("#demo-help-preview").addEventListener("click", () => {
   const result = document.querySelector("#demo-help-result");
   result.hidden = false;
@@ -69,9 +103,10 @@ document.querySelector("#demo-help-preview").addEventListener("click", () => {
   const strong = document.createElement("strong");
   strong.textContent = "送信前の確認画面（体験用）";
   const body = document.createElement("p");
-  body.textContent = `${document.querySelector("#demo-help-destination").value}を選びました。実際の画面では、送る内容と相手をもう一度確認し、本人が送信を決めます。`;
+  body.textContent = `${helpDestination.selectedOptions[0].textContent}を選びました。実際の画面では、送る内容、送信先、名前の扱いをもう一度確認し、本人が送信を決めます。`;
   result.append(strong, body);
 });
+configureHelpDemo();
 
 document.querySelector("#demo-mission-create").addEventListener("click", (event) => {
   document.querySelector("#demo-mission-card").hidden = false;

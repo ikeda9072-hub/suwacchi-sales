@@ -35,7 +35,9 @@ require("使うかどうかは自由です" in STAFF_HTML_TEXT, "optional-use gu
 for page_name, page in (("owner", HTML_TEXT), ("staff", STAFF_HTML_TEXT)):
     require("見えるもの・見えないもの" in page, f"visibility boundary is missing: {page_name}")
     require("自動通知や即時対応は行いません" in page, f"no automatic emergency response warning is missing: {page_name}")
-    require("ヘルプの利用回数・カテゴリ・緊急度・本文" in page, f"help report exclusion is missing: {page_name}")
+    require("社外窓口の検索・閲覧・リンク操作" in page, f"external support privacy boundary is missing: {page_name}")
+    require("社外の相談窓口を探したことや、選んだ相談内容は、社内の他の人には通知されません。" in page, f"external support privacy copy is missing: {page_name}")
+    require("まずはAIに相談する" not in page, f"retired AI help destination remains: {page_name}")
 require("ご意見ポスト" not in HTML_TEXT + STAFF_HTML_TEXT, "retired opinion-post copy remains")
 require("demo-opinion" not in HTML + JS and "staff-opinion" not in STAFF_HTML + STAFF_JS, "retired opinion demo remains")
 require("経営者の方はこちら" not in STAFF_HTML_TEXT, "owner link must not appear in the staff header")
@@ -59,10 +61,14 @@ for discouraged_copy in ("スタッフに何度も同じことを言っている
 require("スタッフとして体験する" not in STAFF_HTML_TEXT and "スタッフとして、触ってみる" not in STAFF_HTML_TEXT, "staff-specific demo wording remains")
 require("fetch(" not in JS + STAFF_JS, "public demos must not make network requests")
 require("/api/" not in JS + STAFF_JS and "supabase" not in (JS + STAFF_JS).lower(), "private API reference detected")
+SUPPORT_JS = (PUBLIC / "support-directory.js").read_text(encoding="utf-8")
+require("fetch(" not in SUPPORT_JS and "localStorage" not in SUPPORT_JS, "support finder must stay local and unsaved")
+for phrase in ("茨城県よろず支援拠点", "茨城県信用保証協会", "INPIT 茨城県知財総合支援窓口", "こころのSNS相談＠いばらき"):
+    require(phrase in SUPPORT_JS, f"verified support resource is missing: {phrase}")
 require("runtime: static" in BLUEPRINT, "Render service must be static")
 require("staticPublishPath: ./public" in BLUEPRINT, "only public/ may be published")
 require("connect-src 'none'" in BLUEPRINT and "form-action 'none'" in BLUEPRINT, "restrictive CSP is missing")
-for asset in ("styles.css", "demo.js", "assets/icon-192.png", "assets/icon-512.png", "assets/apple-touch-icon.png", "assets/characters/suwacchi.png", "assets/characters/shiori.png", "assets/characters/mike.png", "assets/characters/rei.png"):
+for asset in ("styles.css", "demo.js", "support-directory.js", "assets/icon-192.png", "assets/icon-512.png", "assets/apple-touch-icon.png", "assets/characters/suwacchi.png", "assets/characters/shiori.png", "assets/characters/mike.png", "assets/characters/rei.png"):
     require((PUBLIC / asset).is_file(), f"missing public asset: {asset}")
 
 print("public sales site verification: OK")

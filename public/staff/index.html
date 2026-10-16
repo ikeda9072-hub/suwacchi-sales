@@ -13,7 +13,8 @@
     <meta property="og:image" content="../assets/icon-512.png" />
     <link rel="icon" href="../assets/icon-192.png" />
     <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png" />
-    <link rel="stylesheet" href="../styles.css?v=20261016-1" />
+    <link rel="stylesheet" href="../styles.css?v=20261016-2" />
+    <script src="../support-directory.js?v=20261016-1" defer></script>
     <script src="./staff-demo.js" defer></script>
   </head>
   <body class="staff-page">
@@ -108,8 +109,8 @@
         <div class="section-heading centered"><p class="eyebrow">あなたの会社の社長に</p><h2 id="staff-visibility-title"><span class="copy-line">見えるもの・</span><span class="copy-line">見えないもの</span></h2></div>
         <div class="staff-more-grid">
           <article><span>✓</span><h3>見える</h3><p>あなたが明示的に社長へ送ったヘルプと、仕事用の「みんなのやること」は見えます。</p></article>
-          <article><span>🔒</span><h3>見えない</h3><p>通常のAI相談本文、AIだけに相談した内容、「わたしのやること」の本文はそのまま見えません。</p></article>
-          <article><span>📊</span><h3>レポートに含まれない</h3><p>ヘルプの利用回数・カテゴリ・緊急度・本文は、職場傾向や週次レポートに入りません。</p></article>
+          <article><span>🔒</span><h3>見えない</h3><p>通常のAI相談本文、「わたしのやること」の本文、社外窓口を探したこと・選択・閲覧・外部リンク操作は見えません。</p></article>
+          <article><span>📊</span><h3>レポートに含まれない</h3><p>社内ヘルプの本文等や、社外窓口の検索・閲覧・リンク操作は、職場傾向、評価、成長カルテ、解析イベントに利用されません。</p></article>
         </div>
       </section>
 
@@ -146,11 +147,21 @@
           <div class="demo-panel" data-staff-demo-panel="help" hidden>
             <div class="sample-banner">体験用・相談は送信も保存もされません</div>
             <h3><span class="copy-line">必要なときだけ、</span><span class="copy-line">相談先を選べます</span></h3>
-            <label>相談先<select id="staff-help-destination"><option>まずはAIに相談する</option><option>責任者に伝える</option><option>社長に直接伝える</option><option>社内の人には相談しにくい</option></select></label>
-            <label>緊急度<select><option>まずは相談したい</option><option>できるだけ早く対応してほしい</option><option>今すぐ助けが必要</option></select></label>
-            <button id="staff-help-preview" class="demo-button" type="button">送信前の確認を体験</button>
-            <div id="staff-help-result" class="demo-result" hidden></div>
-            <p class="careful-note">緊急度を選んでも自動通知や即時対応は行いません。差し迫った危険には110・119などを利用してください。</p>
+            <label>相談先<select id="staff-help-destination"><option value="">相談先を選んでください</option><option value="responsible">責任者に伝える</option><option value="president">社長に直接伝える</option><option value="external">社外の相談窓口を探す</option></select></label>
+            <div id="staff-help-internal" hidden>
+              <label>緊急度<select><option>まずは相談したい</option><option>できるだけ早く対応してほしい</option><option>今すぐ助けが必要</option></select></label>
+              <button id="staff-help-preview" class="demo-button" type="button">送信前の確認を体験</button>
+              <div id="staff-help-result" class="demo-result" hidden></div>
+              <p class="careful-note">社内への連絡は、本人が宛先・送信内容・名前の扱いを確認してから送信します。緊急度を選んでも自動通知や即時対応は行いません。差し迫った危険には110・119などを利用してください。</p>
+            </div>
+            <div id="staff-help-external" hidden>
+              <div class="external-support-finder" data-support-finder data-support-role="staff">
+                <p class="external-support-intro">実際の外部窓口へ移動するリンクです。体験用デモから社内通知・相談送信・相談データ保存は行いません。</p>
+                <div data-support-picker><label>相談内容<select data-support-category></select></label><label>都道府県<select data-support-prefecture></select></label><button class="demo-button" type="button" data-support-search>窓口を表示</button></div>
+                <p class="external-support-privacy">社外の相談窓口を探したことや、選んだ相談内容は、社内の他の人には通知されません。相談先への連絡は、ご本人の操作で行います。</p>
+                <div data-support-results hidden><p data-support-region-note class="careful-note"></p><div data-support-list class="support-resource-list"></div><button class="demo-button support-back" type="button" data-support-back>← 選び直す</button></div>
+              </div>
+            </div>
           </div>
 
           <div class="demo-panel" data-staff-demo-panel="mission" hidden>

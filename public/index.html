@@ -13,7 +13,8 @@
     <meta property="og:image" content="/assets/icon-512.png" />
     <link rel="icon" href="./assets/icon-192.png" />
     <link rel="apple-touch-icon" href="./assets/apple-touch-icon.png" />
-    <link rel="stylesheet" href="./styles.css?v=20261016-1" />
+    <link rel="stylesheet" href="./styles.css?v=20261016-2" />
+    <script src="./support-directory.js?v=20261016-1" defer></script>
     <script src="./demo.js" defer></script>
   </head>
   <body>
@@ -126,7 +127,7 @@
             <article class="feature-card"><span class="feature-icon">🤝</span><div><h3>みんなのやること</h3><p>仕事の担当・期限・進捗を同じ会社のみんなで確認し、引き継ぎに使えます。</p></div></article>
             <article class="feature-card"><span class="feature-icon">🌷</span><div><h3>社長のAI相談</h3><p>社長自身の気持ちや考えをAIとの対話で整理し、大切な話をする前に伝え方を一緒に考えられます。</p></div></article>
             <article class="feature-card"><span class="feature-icon">🫧</span><div><h3>職場の健康レポート</h3><p>仕事・人間関係・プライベートに関する話題を含む大まかな傾向を、安全に公開できる場合だけ表示します。心理診断ではありません。</p></div></article>
-            <article class="feature-card"><span class="feature-icon">🛟</span><div><h3>ヘルプ</h3><p>スタッフ本人が必要なときだけ、AI・社内の責任者・社長・社外窓口から相談先を選べます。緊急度による自動通知は行いません。</p></div></article>
+            <article class="feature-card"><span class="feature-icon">🛟</span><div><h3>ヘルプ</h3><p>スタッフは責任者・社長・社外窓口から相談先を選べます。社長本人は経営者向けの社外窓口を探せます。通常のAI相談は別機能として利用できます。</p></div></article>
             <article class="feature-card"><span class="feature-icon">⭐</span><div><h3>みんなのミッション</h3><p>チャットの提案をAIが前向きに整え、承認後に会社の目標として公開します。</p></div></article>
             <article class="feature-card"><span class="feature-icon">♡</span><div><h3>ありがとうポイント</h3><p>良い行動をした仲間へ1ポイント。送り主は一般画面には表示しません。</p></div></article>
             <article class="feature-card"><span class="feature-icon">🏠</span><div><h3>企業導入で安心して利用</h3><p>会社が招待した利用者が、それぞれ自分のキャラクターとテーマを選択。承認済みの理念・業務ルールは共通して参照できます。</p></div></article>
@@ -138,8 +139,8 @@
         <div class="section-heading centered"><p class="eyebrow">相談データの境界</p><h2 id="visibility-title"><span class="copy-line">見えるもの・</span><span class="copy-line">見えないもの</span></h2></div>
         <div class="feature-grid">
           <article class="feature-card"><span class="feature-icon">✓</span><div><h3>会社に見える</h3><p>本人が明示的に送ったヘルプだけを、本人が選んだ社長または責任者が確認できます。</p></div></article>
-          <article class="feature-card"><span class="feature-icon">🔒</span><div><h3>会社に見えない</h3><p>通常のAI相談本文、本人専用メモ、AIだけに相談した内容は、そのまま会社へ共有されません。</p></div></article>
-          <article class="feature-card"><span class="feature-icon">📊</span><div><h3>レポートに含めない</h3><p>ヘルプの利用回数・カテゴリ・緊急度・本文は、職場傾向や週次レポートへ含めません。</p></div></article>
+          <article class="feature-card"><span class="feature-icon">🔒</span><div><h3>会社に見えない</h3><p>通常のAI相談本文、本人専用メモ、社外窓口を探したこと・選択・閲覧・外部リンク操作は会社へ共有されません。</p></div></article>
+          <article class="feature-card"><span class="feature-icon">📊</span><div><h3>レポートに含めない</h3><p>社内ヘルプの本文等や、社外窓口の検索・閲覧・リンク操作は、職場傾向、評価、成長カルテ、解析イベントに利用しません。</p></div></article>
         </div>
       </section>
 
@@ -182,12 +183,22 @@
           <div class="demo-panel" data-demo-panel="help" hidden>
             <div class="sample-banner">体験用・相談は送信も保存もされません</div>
             <h3><span class="copy-line">必要なときだけ、</span><span class="copy-line">相談先を選ぶ</span></h3>
-            <p>AIだけに相談する／責任者に伝える／社長に直接伝える／社外窓口を使う、から本人が選ぶイメージです。</p>
-            <label>相談先<select id="demo-help-destination"><option>まずはAIに相談する</option><option>責任者に伝える</option><option>社長に直接伝える</option><option>社内の人には相談しにくい</option></select></label>
-            <label>緊急度<select><option>まずは相談したい</option><option>できるだけ早く対応してほしい</option><option>今すぐ助けが必要</option></select></label>
-            <button id="demo-help-preview" class="demo-button">送信前の確認を体験</button>
-            <div id="demo-help-result" class="demo-result" hidden></div>
-            <p class="careful-note">緊急度を選んでも自動通知や即時対応は行いません。差し迫った危険には110・119などを利用してください。</p>
+            <div class="demo-role-switch help-demo-role"><button class="active" data-help-demo-role="president">社長として</button><button data-help-demo-role="staff">スタッフとして</button></div>
+            <label>相談先<select id="demo-help-destination"></select></label>
+            <div id="demo-help-internal" hidden>
+              <label>緊急度<select><option>まずは相談したい</option><option>できるだけ早く対応してほしい</option><option>今すぐ助けが必要</option></select></label>
+              <button id="demo-help-preview" class="demo-button" type="button">送信前の確認を体験</button>
+              <div id="demo-help-result" class="demo-result" hidden></div>
+              <p class="careful-note">社内への連絡は、本人が宛先・送信内容・名前の扱いを確認してから送信します。緊急度を選んでも自動通知や即時対応は行いません。差し迫った危険には110・119などを利用してください。</p>
+            </div>
+            <div id="demo-help-external" hidden>
+              <div class="external-support-finder" data-support-finder data-support-role="president">
+                <p class="external-support-intro">実際の外部窓口へ移動するリンクです。体験用デモから社内通知・相談送信・相談データ保存は行いません。</p>
+                <div data-support-picker><label>相談内容<select data-support-category></select></label><label>都道府県<select data-support-prefecture></select></label><button class="demo-button" type="button" data-support-search>窓口を表示</button></div>
+                <p class="external-support-privacy">社外の相談窓口を探したことや、選んだ相談内容は、社内の他の人には通知されません。相談先への連絡は、ご本人の操作で行います。</p>
+                <div data-support-results hidden><p data-support-region-note class="careful-note"></p><div data-support-list class="support-resource-list"></div><button class="demo-button support-back" type="button" data-support-back>← 選び直す</button></div>
+              </div>
+            </div>
           </div>
 
           <div class="demo-panel" data-demo-panel="mission" hidden>

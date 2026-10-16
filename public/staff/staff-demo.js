@@ -108,6 +108,14 @@ document.querySelector("#staff-task-draft").addEventListener("click", (event) =>
   event.currentTarget.disabled = true;
 });
 
+const staffHelpDestination = document.querySelector("#staff-help-destination");
+staffHelpDestination.addEventListener("change", () => {
+  const internal = staffHelpDestination.value === "responsible" || staffHelpDestination.value === "president";
+  document.querySelector("#staff-help-internal").hidden = !internal;
+  document.querySelector("#staff-help-external").hidden = staffHelpDestination.value !== "external";
+  document.querySelector("#staff-help-result").hidden = true;
+});
+
 document.querySelector("#staff-help-preview").addEventListener("click", () => {
   const result = document.querySelector("#staff-help-result");
   result.hidden = false;
@@ -115,7 +123,7 @@ document.querySelector("#staff-help-preview").addEventListener("click", () => {
   const strong = document.createElement("strong");
   strong.textContent = "送信前の確認画面（体験用）";
   const body = document.createElement("p");
-  body.textContent = `${document.querySelector("#staff-help-destination").value}を選びました。実際の画面では、送る内容と相手をもう一度確認し、本人が送信を決めます。`;
+  body.textContent = `${staffHelpDestination.selectedOptions[0].textContent}を選びました。実際の画面では、送る内容、送信先、名前の扱いをもう一度確認し、本人が送信を決めます。`;
   result.append(strong, body);
 });
 
