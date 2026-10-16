@@ -53,7 +53,7 @@ require("/api/" not in JS + STAFF_JS and "supabase" not in (JS + STAFF_JS).lower
 require("runtime: static" in BLUEPRINT, "Render service must be static")
 require("staticPublishPath: ./public" in BLUEPRINT, "only public/ may be published")
 require("connect-src 'none'" in BLUEPRINT and "form-action 'none'" in BLUEPRINT, "restrictive CSP is missing")
-for asset in ("styles.css", "demo.js", "assets/icon-192.png", "assets/icon-512.png", "assets/apple-touch-icon.png", "assets/suwacchi-mascot.png", "assets/characters/shiori/wave.webp", "assets/characters/mike/smile.webp", "assets/characters/rei/book.webp"):
+for asset in ("styles.css", "demo.js", "assets/icon-192.png", "assets/icon-512.png", "assets/apple-touch-icon.png", "assets/characters/suwacchi.png", "assets/characters/shiori.png", "assets/characters/mike.png", "assets/characters/rei.png"):
     require((PUBLIC / asset).is_file(), f"missing public asset: {asset}")
 
 print("public sales site verification: OK")
